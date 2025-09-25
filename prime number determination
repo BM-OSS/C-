@@ -2,10 +2,10 @@
 int main()
 {
    int i,n;
-   printf ("请输入一个整数\n");
+   printf ("plaese enter a positive integer\n");
    scanf("%d",&n);
    if(n<=1)
-   {printf("不是质数\n");}
+   {printf("not a prime number\n");}
    else
    {
     int flag=1;
@@ -16,9 +16,9 @@ int main()
         break;
     }
     if(flag==1)
-    {printf("是质数\n");}
+    {printf("is a prime number\n");}
     else
-    printf("不是质数\n");
+    printf("not a prime number\n");
    }
    return 0;
 }
