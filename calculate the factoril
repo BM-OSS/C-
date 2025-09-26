@@ -3,7 +3,7 @@ int main()
 {
     int n,i;
     long long b=1;
-    printf("请输入需要求阶乘的数");
+    printf("palese enter a integer\n");
     scanf("%d",&n);
     
     
