@@ -1,5 +1,6 @@
 #include <stdio.h>
-void ope(char c,int d)
+#pragma warning (disable:4996)
+void open(char c,int d)
 {
     int i;
     char A[26],a[26],*ptr;
@@ -8,21 +9,20 @@ void ope(char c,int d)
         A[i]='A'+i;
         a[i]='a'+i;
     }
-    if(('c'>='a')&&('c'<='z'))
+    if((c>='a')&&(c<='z'))
     ptr=a;
     else
     ptr=A;
     for(i=1;i<=d;i++)
-    {
-        printf("%c",ptr[(c-ptr[0]+i)%26]);
-    }
+    printf("%c",ptr[(c-ptr[0]+i)%26]);
+    
 }
 
 int main()
 {
     char c;
     int d;
-    printf("please input c & d \n");
-    scanf("%c %d",&c,&d);
-    ope(c,d);
+    printf("please input c&d\n");
+    scanf("%c%d",&c,&d);
+    open(c,d);
 }
