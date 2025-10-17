@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
+
+bool is_bin(const char *bin);
+int bin_to_dec(const char *bin);
+
+bool is_bin(const char *bin)
+{
+    if(strlen(bin)==0)
+    {return false;}
+    for(int i;i<strlen(bin);i++)
+    {
+        if(bin[i]!='0' && bin[i]!='1')
+        {return false;}
+    }
+    return true;
+}
+
+int bin_to_dec(const char *bin)
+{
+    int dec = 0;
+    for(int i=0;i<strlen(bin);i++)
+    {
+        dec=dec*2+(bin[i]-'0');
+    }
+    return dec;
+}
+
+int main()
+{
+    char bin[32];
+    int len=strlen(bin);
+    printf("请输入一个二进制数(仅含有1和0）");
+    scanf("%31s",&bin);
+    if(is_bin(bin)==0)
+    {
+        printf("不是一个有效的二进制数\n");
+        return 1;
+    }
+    int dec1=bin_to_dec(bin);
+    printf("此二进制数所对应的十进制数是：%d",dec1);
+    return 0;
+}

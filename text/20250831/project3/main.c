@@ -1,0 +1,16 @@
+#include <stdio.h>
+int main()
+{
+    int n,i;
+    long long b=1;
+    printf("请输入需要求阶乘的数");
+    scanf("%d",&n);
+    
+    
+         for(i=1;i<=n;i++)
+         {
+            b=b*i;
+         }
+         printf("%lld",b);
+   return 0;
+}
