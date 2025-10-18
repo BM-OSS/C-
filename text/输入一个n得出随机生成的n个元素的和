@@ -1,0 +1,19 @@
+#include <stdio.h>
+int main()
+{
+    int n,t[n],i,sum=0;
+    printf("请输入一个整数n使其生成随机的n个元素:");
+    scanf("%d",&n);~
+    printf("随机生成的n个数组为:");
+    for(i=0;i<n;i++)
+    {
+        printf("%d ",t[i]);
+    }
+    for(i=0;i<n;i++)
+    {
+        sum+=t[i];
+    }
+    printf("\n");
+    printf("此数组的所有元素之和为:sum=%d",sum);
+    return 0;
+}
