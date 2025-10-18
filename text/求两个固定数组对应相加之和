@@ -1,0 +1,31 @@
+#include <stdio.h>
+int main()
+{
+    int a[5]={3,45,56,6,4},
+        b[5]={45,56,5,56,7},
+        result[5];
+    int i;
+    printf("求数组a与数组b对应相加的值:\n");
+    printf("a数组为:");
+    for(i=0;i<5;i++)
+    {
+        printf("%d ",a[i]);
+    }
+    printf("\n");
+    printf("b数组为:");
+    for(i=0;i<5;i++)
+    {
+        printf("%d ",b[i]);
+    }
+    for(i=0;i<5;i++)
+    {
+        result[i]=a[i]+b[i];
+    }
+    printf("\n");       
+    printf("两数组相加的和为:");
+    for(i=0;i<5;i++)
+    {
+        printf("%d ",result[i]);
+    }
+    return 0;
+}
