@@ -1,1 +1,12 @@
-
+#include <stdio.h>
+int main()
+{
+    int i,sum=0;
+    char m[5]={3,4,5,7,34};
+    for(i=0;i<5;i++)
+    {
+        sum=sum+m[i];
+    }
+    printf("此数组的和为:%d",sum);
+    return 0;
+}
