@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+    int *arr=NULL;
+    int capacity=0;
+    int count=0;
+    int num;
+    printf("请输入数组元素(输入非数字后结束输入):\n");
+    while(scanf("%d",&num)==1)
+    {
+        if(count>=capacity)
+        {
+            capacity=capacity==0?1:capacity*2;
+            arr=(int*)realloc(arr,capacity*sizeof(int));
+            if(arr==NULL)
+            {
+                printf("内存分配失败\n");
+                return 1;
+            }
+        }
+        arr[count++]=num;
+    }
+    printf("你输入的元素个数为:%d",count);
+    free(arr);
+    return 0;
+}
