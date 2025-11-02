@@ -1,0 +1,136 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+typedef struct
+{
+    int *elements;
+    int length;
+}
+Array;
+Array readArray()
+{
+    Array arr;
+    arr.length=0;
+    arr.elements=NULL;
+    int capacity=0;
+    int num;
+    printf("请输入数组元素(输入非数字字符结束):");
+    while(scanf("%d",&num)==1)
+    {
+        if(arr.length>=capacity)
+        {
+            capacity=(capacity==0)?1:capacity*2;
+            int *newElements=(int*)realloc(arr.elements,capacity*sizeof(int));
+            if(newElements==NULL)
+            {
+                printf("内存分配失败！\n");
+                free(arr.elements);
+                arr.elements=NULL;
+                arr.length=0;
+                return arr;
+            }
+            arr.elements=newElements;
+        }
+        arr.elements[arr.length++]=num;
+    }
+    while(getchar()!='\n');
+    return arr;
+}
+Array sumArray(Array *arrays, int count)
+{
+    Array result;
+    result.length=0;
+    result.elements=NULL;
+    int maxLength=0;
+    for (int i=0;i<count;i++)
+    {
+        if(arrays[i].length>maxLength)
+        {
+            maxLength=arrays[i].length;
+        }
+    }
+    result.length=maxLength;
+    result.elements=(int *)malloc(maxLength*sizeof(int));
+    if(result.elements==NULL)
+    {
+        printf("内存分配失败!\n");
+        result.length=0;
+        return result;
+    }
+    for(int i=0;i<maxLength;i++)
+    {
+        int sum=0;
+        for(int j=0;j<count;j++)
+        {
+            if(i<arrays[j].length)
+            {
+                sum+=arrays[j].elements[i];
+            }
+            else
+            {
+                sum+=0;
+            }
+        }
+        result.elements[i]=sum;
+    }
+    return result;
+}
+void printArray(Array arr,const char *name)
+{
+    printf("%s:",name);
+    for(int i=0;i<arr.length;i++)
+    {
+        printf("%d ",arr.elements[i]);
+    }
+    printf("(长度：%d)\n",arr.length);
+}
+int main()
+{
+    int numArrays;
+    printf("请输入要处理的数组个数:");
+    scanf("%d",&numArrays);
+    while (getchar()!='\n');
+    if(numArrays<=0)
+    {
+        printf("数组个数必须为正数！\n");
+        return 1;
+    }
+    Array*arrays=(Array*)malloc(numArrays*sizeof(Array));
+    if(arrays==NULL)
+    {
+        printf("内存分配失败！\n");
+        return 1;
+    }
+    for(int i=0;i<numArrays;i++)
+    {
+        printf("\n输入第%d个数组:\n",i+1);
+        arrays[i]=readArray();
+        if(arrays[i].elements==NULL&&arrays[i].length==0)
+        {
+            printf("第%d个数组读取失败,程序退出!\n",i+1);
+            for(int j=0;j<i;j++)
+            {
+                free(arrays[j].elements);
+            }
+            free(arrays);
+            return 1;
+        }
+        printArray(arrays[i], "已输入的数组");
+    }
+    Array result=sumArray(arrays,numArrays);
+    if(result.elements==NULL)
+    {
+        printf("计算失败！\n");
+    }
+    else
+    {
+        printArray(result,"\n所有数组相加的结果");
+    }
+    for (int i = 0; i < numArrays; i++)
+    {
+       free(arrays[i].elements);
+    }
+    free(arrays);
+    free(result.elements);
+    return 0;
+}
