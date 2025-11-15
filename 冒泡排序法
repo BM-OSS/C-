@@ -1,0 +1,41 @@
+#include <stdio.h>
+void bubble_sort(int arr[], int length)
+{
+    for(int i=0;i<length-1;i++)
+    {
+        int swapped=0;
+        for(int j=0;j<length-1-i;j++)
+        {
+            if(arr[j]>arr[j+1])
+            {
+                int temp=arr[j];
+                arr[j]=arr[j+1];
+                arr[j+1]=temp;
+                swapped=1;
+            }
+        }
+        if(swapped==0)
+        {
+            break;
+        }
+    }
+}
+void print_arr(int arr[],int length)
+{
+    for(int i=0;i<length;i++)
+    {
+        printf("%d ",arr[i]);
+    }
+    printf("\n");
+}
+int main()
+{
+    int arr[]={64, 34,25, 12, 22, 11, 90};
+    int length=sizeof(arr)/sizeof(arr[0]);
+    printf("排序前的数组：");
+    print_arr(arr,length);
+    bubble_sort(arr,length);
+    printf("排序后的数组：");
+    print_arr(arr,length);
+    return 0;
+}
