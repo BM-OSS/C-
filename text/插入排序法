@@ -1,0 +1,40 @@
+#include <stdio.h>
+
+void insert_sort(int arr[], int length)
+{
+    for(int i=1;i<length;i++)
+    {
+        int key=arr[i];
+        int j=i-1;
+        while (j>=0&&arr[j]>key)
+        {
+            arr[j+1]=arr[j];
+            j--;   
+        }
+        arr[j+1]=key;
+    }
+}
+
+
+void print_array(int arr[], int length)
+{
+    for(int i=0;i<length;i++)
+    {
+        printf("%d ",arr[i]);
+    }
+    printf("\n");
+}
+
+int main()
+{
+    int arr[]={34, 54, 56, 25, 76, 35, 67};
+    int length=sizeof(arr)/sizeof(arr[0]); 
+    printf("排序前的数组为:");
+    print_array(arr, length);
+    insert_sort(arr, length);
+    printf("排序后的数组为:");
+    print_array(arr, length);
+    return 0;
+}
+
+
