@@ -1,0 +1,39 @@
+#include <stdio.h>
+void select_sort(int arr[],int length)
+{
+    for(int i=0;i<length-1;i++)
+    {
+        int min_index=i;
+        for(int j=i+1;j<length;j++)
+        {
+            if (arr[j]<arr[min_index])
+            {
+                min_index=j;
+            }
+        }
+        if(min_index!=i)
+        {
+            int temp=arr[i];
+            arr[i]=arr[min_index];
+            arr[min_index]=temp;
+        }
+    }
+}
+void print_array(int arr[],int length)
+{
+    for(int i=0;i<length;i++)
+    {
+        printf("%d ",arr[i]);
+    }
+    printf("\n");
+}
+void main()
+{
+    int arr[]={43, 45, 89, 99, 87, 25, 7, 34};
+    int length=sizeof(arr)/sizeof(arr[0]);
+    printf("排序前的数组为:\n");
+    print_array(arr,length);
+    select_sort(arr,length);
+    printf("排序后的数组为:\n");
+    print_array(arr,length);
+}
