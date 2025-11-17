@@ -1,0 +1,17 @@
+#include <stdio.h>
+int main ()
+{
+    int a=0, b, m, n;
+    while(a<1000)
+    {
+        b=a/100;
+        m=(a/10)%10;
+        n=a%10;
+        if(b*b*b+m*m*m+n*n*n==a)
+        {
+            printf("%5d ",a);
+        }
+        a++;
+    }
+    return 0;
+}
