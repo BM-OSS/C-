@@ -1,0 +1,47 @@
+#include <stdio.h>
+typedef struct
+{
+    int average;
+    int max;
+    int min;
+}
+Result;
+
+Result calculate_sum(int numbers[]);
+int main()
+{
+    printf("请输入10个整数:\n");
+    int numbers[10];
+    for(int i=0;i<10;i++)
+    {
+        scanf("%d",&numbers[i]);
+    }
+    Result result=calculate_sum(numbers);
+    printf("平均值为:%d\n",result.average);
+    printf("最大值为:%d\n",result.max);
+    printf("最小值为:%d\n",result.min);
+    return 0;
+}
+
+Result calculate_sum(int numbers[])
+{
+    int sum=0;
+    int average=0;
+    int max=numbers[0];
+    int min=numbers[0];
+    for(int i=0;i<10;i++)
+    {
+        if(numbers[i]>max)
+        {
+            max=numbers[i];
+        }
+        sum+=numbers[i];
+        if(numbers[i]<min)
+        {
+            min=numbers[i];
+        }
+    }
+    average=sum/10;
+    Result result={average,max,min};
+    return result;
+}
