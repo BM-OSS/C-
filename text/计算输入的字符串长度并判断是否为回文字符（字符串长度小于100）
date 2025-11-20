@@ -1,0 +1,47 @@
+#include <stdio.h>
+
+typedef struct
+{
+    int length;
+    int flag;
+}
+Result;
+
+Result length_of_string(char *str);
+
+int main()
+{
+    char str[100];
+    printf("请输入字符串:");
+    scanf("%s",str);
+    Result res=length_of_string(str);
+    printf("字符串的长度为:%d\n",res.length);
+    if(res.flag==1)
+    {
+        printf("该字符串是回文字符串\n");
+    }
+    else
+    {
+        printf("该字符串不是回文字符串\n");
+    }
+}
+
+Result length_of_string(char *str)
+{
+    int length=0;
+    int flag=1;
+    while(str[length]!='\0')
+    {
+        length++;
+    }
+    for(int i=0;i<length/2;i++)
+    {
+        if(str[length-1-i]!=str[i])
+        {
+            flag=0;
+            break;
+        }
+    }
+    Result res={length,flag};
+    return res;
+}
