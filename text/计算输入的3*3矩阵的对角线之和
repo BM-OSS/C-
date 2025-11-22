@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+int main()
+{
+    int arr[3][3];
+    printf("请输入你想要处理的3x3矩阵:\n");
+    for(int i=0;i<3;i++)
+    {
+        for(int j=0;j<3;j++)
+        {
+            scanf("%d",&arr[i][j]);
+        }
+    }
+    printf("你输入的矩阵是:\n");
+    for(int i=0;i<3;i++)
+    {
+        for(int j=0;j<3;j++)
+        {
+            printf("%d ",arr[i][j]);
+        }
+        printf("\n");
+    }
+    int line1=0,line2=0;
+    line1=arr[0][0]+arr[1][1]+arr[2][2];
+    line2=arr[2][0]+arr[1][1]+arr[0][2];
+    printf("line1=%d;line2=%d",line1,line2);
+}
+
