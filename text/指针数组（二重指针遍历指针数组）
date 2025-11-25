@@ -1,0 +1,16 @@
+#include <stdio.h>
+
+int main()
+{
+    int length=0;
+    char *numes[]={"Alice","Bob","Charlie"};
+    char **ptr=numes;
+    length=sizeof(numes)/sizeof(numes[0]);
+    printf("指针遍历后三个人的名字:\n");
+    for(int i=0;i<length;i++)
+    {
+        printf("%s\n",*ptr);
+        ptr++;
+    }
+    return 0;
+}
