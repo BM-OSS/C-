@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void alloc_int(int **p);
+
+int main ()
+{
+    int *num_ptr=NULL;
+    alloc_int(&num_ptr);
+    if(num_ptr!=NULL)
+    {
+        *num_ptr=42;
+        printf("%d\n",*num_ptr);
+        free(num_ptr);
+        num_ptr=NULL;
+    }
+    else
+    {
+        printf("内存分配失败\n");
+    }
+    return 0;
+}
+
+void alloc_int(int **p)
+{
+    *p=(int *)malloc(sizeof(int));
+    if(*p==NULL)
+    {
+        *p=NULL;
+    }
+}
