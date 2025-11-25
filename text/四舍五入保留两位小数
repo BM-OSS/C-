@@ -1,0 +1,15 @@
+#include <stdio.h>
+
+int main ()
+{
+    double x;
+    printf("请输入你想要处理的整数:\n");
+    scanf("%lf",&x);
+    printf("你输入的整数是:%lf\n",x);
+    x=x*100;
+    x=x+0.5;
+    x=(int)x;
+    x=x/100;
+    printf("处理后的整数是:%lf\n",x);
+    return 0;
+}
