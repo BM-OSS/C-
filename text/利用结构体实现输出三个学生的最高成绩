@@ -1,0 +1,57 @@
+#include <stdio.h>
+
+typedef struct Student
+{
+    char name[50];
+    int id;
+    int score;
+}
+Student;
+
+void Student_print(const Student* Student);
+void Student_input(const Student* student,int n);
+void Find_highest_score(const Student* student,int n);
+
+int main()
+{
+    int n=3;
+    Student student[3];
+    printf("请输入你想要处理的学生姓名、学号、分数\n");
+    Student_input(student,n);
+    printf("三个学生中成绩最高的是:\n");
+    Find_highest_score(student,n);
+    return 0;
+} 
+
+void Student_print(const Student* student)
+{
+    printf("Nume:%s ",student->name);
+    printf("ID:%d ",student->id);
+    printf("Score:%d",student->score);
+} 
+
+void Student_input(const Student* student,int n)
+{
+    for(int i=0;i<n;i++)
+    {
+        printf("Enter Name(%d):",i+1);
+        scanf("%s",&student[i].name);
+        printf("Enter ID(%d):",i+1);
+        scanf("%d",&student[i].id);
+        printf("Enter Score(%d):",i+1);
+        scanf("%d",&student[i].score);
+    }   
+}
+
+void Find_highest_score(const Student* student,int n)
+{
+    int highest_index=0;
+    for(int i=1;i<n;i++)
+    {
+        if(student[i].score>student[highest_index].score)
+        {
+            highest_index=i;
+        }
+    }
+    Student_print(&student[highest_index]);   
+}
