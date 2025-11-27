@@ -1,0 +1,57 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct Student
+{
+    char Name[50];
+    int ID;
+    float Score;
+}
+Student;
+
+void write_students_to_file(Student *students,int count);
+void read_students_from_file();
+
+int main()
+{
+    Student students[]={{"Alice",1,85.5},{"Bob",2,90.0},{"Charlie",3,78.0}};
+    int count=sizeof(students)/sizeof(students[0]);
+    write_students_to_file(students,count);
+    read_students_from_file();
+    return 0;
+}
+
+void write_students_to_file(Student *students,int count)
+{
+    FILE *fp=fopen("students.txt","w");
+    if(fp==NULL)
+    {
+        perror("无法打开文件");
+        exit(EXIT_FAILURE);
+    }
+    for(int i=0;i<count;i++)
+    {
+        fprintf(fp,"%s %d %.2f\n",students[i].Name,students[i].ID,students[i].Score);
+    }
+    fclose(fp);
+}
+
+void read_students_from_file()
+{
+    FILE *fp=fopen("students.txt","r");
+    if(fp==NULL)
+    {
+        perror("无法打开文件");
+        exit(EXIT_FAILURE);
+    }
+    char Name[50];
+    int ID;
+    float Score;
+    printf("从文件中读取的学生信息:\n");
+    while(fscanf(fp,"%s %d %f",Name,&ID,&Score)!=EOF)
+    {
+        printf("Name:%s ID:%d Score:%.2f\n",Name,ID,Score);
+    }
+    fclose(fp);
+}
