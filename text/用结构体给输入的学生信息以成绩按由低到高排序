@@ -1,0 +1,78 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct Student
+{
+    char Name[50];
+    int ID;
+    float Score;
+}
+Student;
+
+void printf_students_information(Student *students,int count);
+int input_students_information(Student *students);
+void sort_students_by_score(Student *students,int count);
+
+int main()
+{
+    Student students[100];
+    int count=input_students_information(students);
+    sort_students_by_score(students,count);
+    printf_students_information(students,count);
+    return 0;   
+}
+
+int input_students_information(Student *students)
+{
+    int count=0;
+    char end_flag[10]="end";
+    for(int i=0;;i++)
+    {
+        printf("Name(%d):",i+1);
+        scanf("%s",students[i].Name);
+        if(strcmp(students[i].Name,end_flag)==0)
+        {
+            break;
+        }
+        printf("ID(%d):",i+1);
+        scanf("%d",&students[i].ID);
+        printf("Score(%d):",i+1);
+        scanf("%f",&students[i].Score);
+        printf("\n");
+        count++;   
+    }
+    return count;
+}
+
+void printf_students_information(Student *students,int count)
+{
+    printf("Students Information\n");
+    for(int i=0;i<count;i++)
+    {
+        printf("Name:%s ID:%d Score:%.1f",students[i].Name,students[i].ID,students[i].Score);
+        printf("\n");
+    }
+}
+
+void sort_students_by_score(Student *students,int count)
+{
+    for(int i=0;i<count;i++)
+    {
+        int flag=0;
+        for(int j=0;j<count-1-i;j++)
+        {
+            if(students[j].Score>students[j+1].Score)
+            {
+                Student temp=students[j];
+                students[j]=students[j+1];
+                students[j+1]=temp;
+                flag=1;
+            }
+        }
+        if(flag==0)
+        {
+            break;
+        }
+    }
+}
