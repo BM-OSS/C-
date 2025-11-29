@@ -1,0 +1,62 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+typedef struct Student
+{
+    char name[50];
+    int id;
+    float score;
+}
+Student;
+void write_students_to_binary_file(Student *students,int count);
+void read_and_modify_students_from_binary_file();
+int main()
+{
+    Student students[]={{"张三",1,85.5},{"李四",2,90.0},{"王五",3,78.5}};
+    int count=sizeof(students)/sizeof(students[0]);
+    write_students_to_binary_file(students,count);
+    read_and_modify_students_from_binary_file();
+    return 0;
+}
+void write_students_to_binary_file(Student *students,int count)
+{
+    FILE *fp=fopen("students.bin","wb");
+    if(fp==NULL)
+    {
+        perror("无法打开文件");
+        exit(EXIT_FAILURE);
+    }
+    fwrite(students,sizeof(Student),count,fp);
+    fclose(fp);
+    printf("学生信息已写入二进制文件。\n");
+}
+void read_and_modify_students_from_binary_file()
+{
+    FILE *fp=fopen("students.bin","rb+");
+    if(fp==NULL)
+    {
+        perror("无法打开文件");
+        exit(EXIT_FAILURE);
+    }
+    Student students[100];
+    size_t count=fread(students,sizeof(Student),100,fp);
+    printf("修改前学生信息:\n");
+    for(size_t i=0;i<count;i++)
+    {
+        printf("姓名:%s, 学号:%d, 成绩:%.2f\n",students[i].name,students[i].id,students[i].score);
+        if(students[i].id==2)
+        {    
+            students[i].score=95.0;           
+        }
+    }
+    fseek(fp,0,SEEK_SET);
+    fwrite(students,sizeof(Student),count,fp);
+    printf("修改后学生信息:\n");
+    for(size_t i=0;i<count;i++)
+    {
+        printf("姓名:%s, 学号:%d, 成绩:%.2f\n",students[i].name,students[i].id,students[i].score);
+    }
+    fclose(fp);
+    printf("学生信息已修改并写回二进制文件。\n");
+    
+}
