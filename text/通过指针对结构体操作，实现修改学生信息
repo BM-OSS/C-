@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+typedef struct Student
+{
+    char Name[50];
+    int ID;
+    float Score;
+}
+Student;
+
+
+void modify_students_info(Student *studentsptr,const char *newName,int newID,float newScore);
+void print_students_info(const Student *studentsptr);
+
+int main()
+{
+    Student students={"张三",1,84.6};
+    Student *studentsptr=&students;
+    printf("信息改变前:\n",studentsptr);
+    print_students_info(studentsptr);
+    modify_students_info(studentsptr,"李四",2,95.0);
+    printf("改变信息后:\n",studentsptr);
+    print_students_info(studentsptr);
+    return 0;
+}
+
+void modify_students_info(Student *studentsptr,const char *newName,int newID,float newScore)
+{
+    strcpy(studentsptr->Name,newName);
+    studentsptr->ID=newID;
+    studentsptr->Score=newScore;
+}
+
+void print_students_info(const Student *studentsptr)
+{
+    printf("姓名:%s 学号:%d 成绩:%.2f\n",studentsptr->Name,studentsptr->ID,studentsptr->Score);
+}
