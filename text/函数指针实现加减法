@@ -1,0 +1,24 @@
+#include <stdio.h>
+
+int add(int a,int b)
+{
+    int result=a+b;
+}
+int subtruct(int a,int b)
+{
+    int result=a-b;
+}
+int main()
+{
+    typedef int (*mathfuction)(int,int);
+    int num1=4;
+    int num2=5;
+    printf("num1=4 num2=5\n");
+    mathfuction addptr=add;
+    mathfuction subtructptr=subtruct;
+    int resultadd=addptr(num1,num2);
+    int resultsubtruct=subtructptr(num1,num2);
+    printf("%d +%d =%d\n",num1,num2,resultadd);
+    printf("%d -%d =%d\n",num1,num2,resultsubtruct);
+    return 0;
+}
