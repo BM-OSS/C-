@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <math.h>
+
+double integ(double a,double b);
+
+int main()
+{
+    double a,b;
+    printf("Enter the limits of integration (a b): ");
+    scanf("%lf %lf",&a,&b);
+    printf("The result is:s=%lf\n",integ(a,b));
+    return 0;
+}
+
+double integ(double a,double b)
+{
+    double s, h , x=0.0;
+    h=fabs(a-b)/100.0;
+    s=(sin(a)+sin(b))/2.0;
+    for(int i=1;i<100;i++)
+    {
+        x+=sin(a+i*h);
+    }    
+    s=(s+x)*h;
+    return s;
+}
