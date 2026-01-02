@@ -1,0 +1,24 @@
+#include <stdio.h>
+
+char myupper(char ch);
+
+int main()
+{
+    char ch;
+    char c;
+    printf("请输入一个字符串组:\n");
+    while((c=getchar())!='@')
+    {
+        ch=myupper(c);
+        putchar(ch);
+    }
+}
+
+char myupper(char ch)
+{
+    if(ch>='a'&&ch<='z')
+    {
+        ch=ch-'a'+'A';
+        return ch;
+    }
+}
