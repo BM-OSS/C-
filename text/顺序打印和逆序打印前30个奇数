@@ -1,0 +1,29 @@
+#include <stdio.h>
+#define M 30
+
+int main()
+{
+    int a[M],k=1;
+    for(int i=0;i<M;i++,k+=2)
+    {
+        a[i]=k;
+    }
+    printf("顺序打印前30个奇数为:\n");
+    for(int i=0;i<M;i++)
+    {
+        printf("%4d",a[i]);
+        if((i+1)%10==0)
+        {
+            printf("\n");
+        }
+    }
+    printf("逆序打印前30个奇数为:\n");
+    for(int i=M-1;i>=0;i--)
+    {
+        printf("%4d",a[i]);
+        if(i%10==0)
+        {
+            printf("\n");
+        }
+    }
+}
