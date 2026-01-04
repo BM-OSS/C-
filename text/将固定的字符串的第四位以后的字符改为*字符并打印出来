@@ -1,0 +1,29 @@
+#include <stdio.h>
+#define M 10
+#define N 4
+
+int jiaohuan(char *a,int n);
+void print(char *a,int n);
+
+int main()
+{
+    char c[M]={'a','b','c','d','e','f','g','h','i','j'};
+    jiaohuan(&c[4],M-N);
+    print(c,M);
+    return 0;
+}
+
+int jiaohuan(char *a,int n)
+{
+    for(int i=0;i<=n;i++)
+    {
+        *(a+i)='*';
+    }
+}
+void print(char *a,int n)
+{
+    for(int i=0;i<n;i++)
+    {
+        printf("%c",*(a+i));
+    }
+}
