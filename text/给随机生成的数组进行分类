@@ -1,0 +1,47 @@
+//生成随机数组包含50个元素，再对这50个元素进行分类（按照0到9的个数进行分）并且打印出来
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#define M 50
+#define N 10
+
+void randdata(int *a,int n);
+void stat(int *a,int *b);
+void print(int *a);
+
+int main()
+{
+    int x[M],y[N]={0};
+    printf("下面是已分类的随机生成的0到9的50个数组\n");
+    randdata(x,M);
+    stat(x,y);
+    print(y);
+}
+
+void randdata(int *a,int n)
+{
+    for(int i=0;i<n;i++)
+    {
+        a[i]=rand()%10;
+    }
+}
+void stat(int *a,int *b)
+{
+    for(int i=0;i<N;i++)
+    {
+        for(int j=0;j<M;j++)
+        {
+            if(a[j]==i)
+            {
+                b[i]+=1;
+            }
+        }
+    }
+}
+void print(int *a)
+{
+    for(int i=0;i<N;i++)
+    {
+        printf("为(%d)的个数:%d\n",i,a[i]);
+    }
+}
