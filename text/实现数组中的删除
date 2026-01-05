@@ -1,0 +1,49 @@
+#include <stdio.h>
+#define M 10
+void print(int *a,int n);
+int dex(int n);
+int indel(int *a,int n,int k);
+int main()
+{
+    int y[M]={1,2,3,4,5,6,7,8,9,10};
+    printf("以下是固定数组的十个元素\n");
+    print(y,M);
+    int v=dex(M);
+    int u=indel(y,M,v);
+    printf("删除的后的九个元素\n");
+    print(y,u);
+    return 0;
+}
+void print(int *a,int n)
+{
+    for(int i=0;i<n;i++)
+    {
+        printf("%3d",a[i]);
+    }
+    printf("\n");
+}
+int dex(int n)
+{
+    int x;
+    printf("请输入你需要删除的数组下标(0~9)\n");
+    int i=0;
+    do
+    {
+        if(i>0)
+        {
+            printf("请从新输入\n");
+        }
+        scanf("%d",&x);
+        i++;
+    } while (x<0||x>=10);
+    return x;
+}
+int indel(int *a,int n,int k)
+{
+    for(int i=k;i<n;i++)
+    {
+        a[i]=a[i+1];
+    }
+    n=n-1;
+    return n;
+}
