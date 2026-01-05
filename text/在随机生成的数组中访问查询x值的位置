@@ -1,0 +1,93 @@
+//实现在随机生成的数组中查找X元素所在的位置，具体要求如下：
+//1.写出函数实现随机生成不重复的含有30个元素的数组；
+//2.把随机生成的数组按照从小到大的顺序排列打印；
+//3.用函数实现已知数组上查找位置，若数组中有该x元素则返回元素所在数组的位数，若没有则反馈数组中没有x元素。
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#define M 30
+void randdata(int *a,int n);
+int dex(int *a,int x);
+void print(int *a,int n);
+int main()
+{
+    int X[M];
+    int m=0;
+    srand(time(NULL));
+    printf("下面是随机生成的数组\n");
+    randdata(X,M);
+    print(X,M);
+    printf("请输入你要查询的x值(0<=x<=100):\n");
+    scanf("%d",&m);
+    int Y=dex(X,m);
+    if(Y>=0)
+    {
+        printf("x值在数组中的第%d位\n",Y+1);
+    }
+    else
+    {
+        printf("没有在数组中找到x值\n");
+    }
+    return 0;
+}
+void randdata(int *a,int n)
+{
+    int used[100]={0};
+    for(int i=0;i<n;i++)
+    {
+        int num=0;
+        do
+        {
+            num=rand()%100;
+        } while (used[num]);
+        used[num]=1;
+        a[i]=num;
+    }
+    for(int i=0;i<n;i++)
+    {
+        int flag=0;
+        for(int j=1;j<n;j++)
+        {
+            int temp;
+            if(a[j-1]>a[j])
+            {
+                temp=a[j];
+                a[j]=a[j-1];
+                a[j-1]=temp;
+                flag=1;
+            }
+        }
+        if(flag==0)
+        {
+            break;
+        }
+    }
+}
+int dex(int *a,int x)
+{
+    int Y=0;
+    for(int i=0;i<M;i++)
+    {
+        if(a[i]==x&&i<M)
+        {
+            Y=i;
+            return i;
+        }
+        else
+        {
+            Y=-1;
+        }
+    }
+    return Y;
+}
+void print(int *a,int n)
+{
+    for(int i=0;i<n;i++)
+    {
+        printf("%3d",a[i]);
+        if((i+1)%10==0)
+        {
+            printf("\n");
+        }
+    }
+}
