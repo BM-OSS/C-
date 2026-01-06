@@ -1,0 +1,68 @@
+//在5行5列的方阵中找到每列的最小值行下标：
+//1.用函数生成随机不重复的5*5方阵；
+//2.找到每一列的最小行下标；
+//3.把最5行5列的方阵打印并且在每列的下面打印最小行下标。
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#define M 5
+void getrand(int s[M][M]);
+void fandmin(int (*s)[M],int v[M]);
+void print(int s[][M],int v[M]);
+int main()
+{
+    int x[M][M],v[M];
+    srand(time(NULL));
+    printf("下面是5行五列的方阵\n");
+    getrand(x);
+    fandmin(x,v);
+    printf("每列的最小行下标如下\n");
+    print(x,v);
+}
+void getrand(int s[M][M])
+{
+    int used[101]={0};
+    int num=0;
+    for(int i=0;i<M;i++)
+    {
+        for(int j=0;j<M;j++)
+        {
+            do
+            {
+                num=rand()%101;
+            }while(used[num]);
+            s[i][j]=num;
+            used[num]=1;   
+        }
+    }
+}
+void fandmin(int (*s)[M],int *v)
+{
+    for(int i=0;i<M;i++)
+    {
+        int e=0;
+        for(int j=0;j<M;j++)
+        {
+            if(s[e][i]>s[j][i])
+            {
+                e=j;
+            }
+        }
+        v[i]=e;
+    }
+}
+void print(int s[][M],int *v)
+{
+    for(int i=0;i<M;i++)
+    {
+        for(int j=0;j<M;j++)
+        {
+            printf("%5d",s[i][j]);
+        }
+        printf("\n");
+    }
+    for(int i=0;i<M;i++)
+    {
+        printf("第%d列的最小行下表为%d\n",i+1,v[i]);
+    }
+}
