@@ -1,0 +1,45 @@
+#include <stdio.h>
+#define M 10
+void getdata(int (*p)[M],int n);
+void print(int s[M][M],int n);
+
+int main()
+{
+    int x[M][M]; 
+    printf("以下是十行十列的杨辉三角\n");
+    getdata(x,M);
+    print(x,M);
+    return 0;    
+}
+void getdata(int (*p)[M],int n)
+{
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<=i;j++)
+        {
+            if(j==0||j==i)
+            {
+                p[i][j]=1;
+            }
+            else
+            {
+                p[i][j]=p[i-1][j-1]+p[i-1][j];
+            }
+        }
+    }
+}
+void print(int s[M][M],int n)
+{
+    for(int i=0;i<n;i++)
+    {
+        for(int j=n-i;j>0;j--)
+        {
+            printf("  ");
+        }
+        for(int k=0;k<=i;k++)
+        {
+            printf("%4d",s[i][k]);
+        }
+        printf("\n");
+    }
+}
