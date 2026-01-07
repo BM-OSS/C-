@@ -1,0 +1,22 @@
+#include <stdio.h>
+#include <string.h>
+
+int slength(char *s);
+int main()
+{
+    char s[]="holle world!";
+    int m=slength(s);
+    printf("这个字符串的长度为:%d\n",m);
+}
+int slength(char *s)
+{
+    char *p;
+    p=s;
+    int n=0; 
+    while(*p!='\0')
+    {
+        p++;
+        n++;
+    }
+    return n;
+}
