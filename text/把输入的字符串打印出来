@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <string.h>
+#define ML 60
+#define MD 40
+void getext(char (*s)[ML],int *m);
+void putext(char (*s)[ML],int n);
+int main()
+{
+    int n=0;
+    char x[MD][ML];
+    printf("请输入要打印的字符串:\n");
+    getext(x,&n);
+    putext(x,n);
+}
+void getext(char (*s)[ML],int *m)
+{
+    int i=0;
+    while(i<MD&&fgets(s[i],ML,stdin)!=NULL)
+    {
+        s[i][strcspn(s[i],"\n")]='\0';
+        if(s[i][0]=='\0')
+        {
+            break;
+        }
+        i++;
+    }
+    *m=i;
+}
+void putext(char (*s)[ML],int n)
+{
+    for(int i=0;i<n;i++)
+    {
+        printf("%-2d",i+1);
+        puts(s[i]);
+        printf("\n");
+    }
+}
