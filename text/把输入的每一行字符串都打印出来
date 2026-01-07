@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <string.h>
+
+#define MAXL 60
+#define MAXD 40
+
+void getintext(char (*s)[MAXL], int *m);
+void puttext(char (*s)[MAXL], int n);
+
+int main() 
+{
+    char x[MAXD][MAXL];
+    int n = 0;
+    printf("请输入你想要输入的字符串(每行不超过60个字符,总共不超过40行)\n");
+    getintext(x, &n);
+    puttext(x, n);
+    return 0;
+}
+
+void getintext(char (*s)[MAXL], int *m) {
+    int b = 0;
+    while (b < MAXD && fgets(s[b], MAXL, stdin)!= NULL) 
+    {
+        s[b][strcspn(s[b], "\n")] = '\0';
+        if (s[b][0] == '\0') {
+            break;
+        }
+        b++;
+    }
+    *m = b;
+}
+
+void puttext(char (*s)[MAXL], int n) 
+{
+    for (int i = 0; i < n; i++) 
+    {
+        printf("%-2d", i + 1);
+        puts(s[i]);
+        printf("\n");
+    }
+}
