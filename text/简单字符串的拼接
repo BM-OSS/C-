@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <string.h>
+void scopy(char *s,char *t,int n);
+int getdata(char *s);
+int main()
+{
+    char x[20]={"holle"},y[]={"world!"};
+    printf("拼接前的字符串为:\n");
+    puts(x);
+    puts(y);
+    printf("拼接后的字符串为:\n");
+    int n=getdata(x);
+    scopy(x,y,n);
+    puts(x);
+    return 0;
+}
+int getdata(char *s)
+{
+    return strlen(s);
+}
+void scopy(char *s,char *t,int n)
+{
+    int i=0;
+    while(*t!='\0'&&(n+i)<20)
+    {
+        *(s+n+i)=*(t+i);
+        i++;
+    }
+    if((n+i)<20)
+    {
+        *(s+n+i)='\0';
+    }
+}
