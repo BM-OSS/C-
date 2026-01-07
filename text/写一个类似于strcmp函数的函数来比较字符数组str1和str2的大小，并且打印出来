@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <string.h>
+int scopy(char *s,char *t);
+void print(int m);
+int main()
+{
+    char x[]={"abc"},y[]={"abd"};
+    int m=0;
+    m=scopy(x,y);
+    print(m);
+    return 0;
+}
+int scopy(char *s,char *t)
+{
+    int i=0;
+    while(s[i]==t[i]&&s[i]!='\0'&&t[i]!='\0')
+    {
+        i++;
+    }
+    return s[i]-t[i];
+}    
+void print(int m)
+{
+    if(m>0)
+    {
+        printf("str1>str2\n");
+    }
+    else if(m<0)
+    {
+        printf("str1<str2\n");
+    }
+    else
+    {
+        printf("str1=str2\n");
+    }
+}
