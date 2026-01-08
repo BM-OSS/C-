@@ -1,0 +1,21 @@
+#include <stdio.h>
+int rex(int t);
+int main()
+{
+    int x,y;
+    printf("请输入你想要计算的m值:\n");
+    scanf("%d",&x);
+    y=rex(x);
+    printf("%d的阶乘为%d",x,y);
+}
+int rex(int t)
+{
+    if(t==0||t==1)
+    {
+        return 1;
+    }
+    else
+    {
+        return t*rex(t-1);
+    }
+}
