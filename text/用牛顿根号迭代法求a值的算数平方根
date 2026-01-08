@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <math.h>
+double mysprt(double a,double x1);
+int main()
+{
+    double a,x1,result;
+    printf("请输入你想计算平方根的a值\n");
+    scanf("%lf",&a);
+    x1=a;
+    result=mysprt(a,x1);
+    printf("a的平方根是:%lf",result);
+}
+double mysprt(double a,double x1)
+{
+   x1=(x1+a/x1)/2;
+   if(fabs(x1*x1-a)>1e-6)
+   {
+    return mysprt(a,x1);
+   } 
+   else
+   {
+    return x1;
+   }
+}
