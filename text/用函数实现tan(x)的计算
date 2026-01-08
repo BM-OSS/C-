@@ -1,0 +1,15 @@
+#include <stdio.h>
+#include <math.h>
+
+double tans(double (*fp1)(double),double (*fp2)(double),double v);
+int main()
+{
+    double x,y;
+    x=60*3.1416/180;
+    y=tans(sin,cos,x);
+    printf("tan(60)=%10.6f",y);
+}
+double tans(double (*fp1)(double),double (*fp2)(double),double v)
+{
+    return fp1(v)/fp2(v);
+}
