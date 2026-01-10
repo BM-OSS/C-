@@ -25,7 +25,7 @@ SLIST* creat_slist1()
         r=s;
         scanf("%d",&c);
     }
-    r->next='\0';
+    r->next=NULL;
     return h;       
 }
 void print(SLIST *head)
