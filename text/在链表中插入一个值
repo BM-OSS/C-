@@ -1,0 +1,81 @@
+#include <stdio.h>
+#include <stdlib.h>
+typedef struct slist
+{
+    int data;
+    struct slist *next;
+}SLIST;
+SLIST *creat_slist()
+{
+    int c;
+    SLIST *h,*s,*r;
+    h=(SLIST*)malloc(sizeof(SLIST));
+    if(h==NULL)
+    {
+        printf("内存分配失败\n");
+        exit(1);
+    }
+    r=h;
+    printf("请输入数据(输入-1结束):\n");
+    scanf("%d",&c);
+    while(c!=-1)
+    {
+        s=(SLIST*)malloc(sizeof(SLIST));
+        s->data=c;
+        r->next=s;
+        r=s;
+        scanf("%d",&c);
+    }
+    r->next=NULL;
+    return h;
+}
+void print(SLIST *head)
+{
+    SLIST *p;
+    p=head->next;
+    if(p==NULL)
+    {
+        printf("链表为空\n");
+        return;
+    }
+    printf("链表数据:\n");
+    while(p!=NULL)
+    {
+        printf("%d ",p->data);
+        p=p->next;
+    }
+    printf("\n");
+}
+void add_in(SLIST *head,int x,int y)
+{
+    SLIST *s,*p,*q;
+    s=(SLIST*)malloc(sizeof(SLIST));
+    if(s==NULL)
+    {
+       printf("内存分配失败\n");
+       exit(1); 
+    }
+    s->data=y;
+    q=head;
+    p=head->next;
+    while(p!=NULL&&p->data!=x)
+    {
+        q=p;
+        p=p->next;
+    }
+    s->next=p;
+    q->next=s;
+}
+int main()
+{
+    int x,y;
+    SLIST *head=creat_slist();
+    printf("插入前:\n");
+    print(head);
+    printf("请输入要插入的位置和值\n");
+    scanf("%d %d",&x,&y);
+    add_in(head,x,y);
+    printf("插入后:\n");
+    print(head);
+    return 0;
+}
