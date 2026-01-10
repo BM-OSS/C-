@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <stdlib.h>
+typedef struct slist
+{
+    int data;
+    struct slist *next;
+}SLIST;
+SLIST* creat_slist1()
+{
+    int c;
+    SLIST *h,*s,*r;
+    h=(SLIST*)malloc(sizeof(SLIST));
+    if(h==NULL)
+    {
+        printf("内存分配失败\n");
+        exit(1);
+    }
+    r=h;
+    scanf("%d",&c);
+    while(c!=-1)
+    {
+        s=(SLIST*)malloc(sizeof(SLIST));
+        s->data=c;
+        r->next=s;
+        r=s;
+        scanf("%d",&c);
+    }
+    r->next='\0';
+    return h;       
+}
+void print(SLIST *head)
+{
+    SLIST *p;
+    p=head->next;
+    if(p==NULL)
+    {
+        printf("链表为空\n");
+        return ;
+    }
+    else
+    {
+        do
+        {
+            printf("%d ",p->data);
+            p=p->next;
+        } while (p!=NULL);
+    }
+}
+int main()
+{
+    SLIST *head;
+    head=creat_slist1();
+    print(head);
+}
