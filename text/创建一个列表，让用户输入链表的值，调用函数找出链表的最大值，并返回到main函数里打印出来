@@ -1,0 +1,74 @@
+#include <stdio.h>
+#include <stdlib.h>
+typedef struct Node
+{
+    int data;
+    struct Node*next;
+}Node;
+Node*createlist()
+{
+    Node *head=NULL;Node *tail=NULL;
+    int num;
+    printf("请输入链节点数据,输入-1结束:\n");
+    while(1)
+    {
+        scanf("%d",&num);
+        if(num==-1)
+        {
+            break;
+        }
+        Node *newdata=(Node*)malloc(sizeof(Node));
+        if(newdata==NULL)
+        {
+            printf("内存分配失败\n");
+            exit(1);
+        }
+        newdata->data=num;
+        newdata->next=NULL;
+        if(head==NULL)
+        {
+            head=newdata;
+            tail=newdata;
+        }
+        else
+        {
+            tail->next=newdata;
+            tail=newdata;
+        }
+    } 
+    return head;
+}
+int FindMax(Node *head)
+{
+    if(head==NULL)
+    {
+        printf("链表为空\n");
+        exit(1);
+    }
+    int max=head->data;
+    Node *find=head->next;
+    while(find!=NULL)
+    {
+        if(find->data>max)
+        {
+            max=find->data;
+        }
+        find=find->next;
+    }
+    return max;
+}
+int main()
+{
+    Node *head=createlist();
+    int maxvalue=FindMax(head);
+    printf("链表中的最大值为:%d\n",maxvalue);
+    Node *del=head;
+    Node *find;
+    while(del!=NULL)
+    {
+        find=del->next;
+        free(del);
+        del=find;
+    }
+    return 0;
+}
