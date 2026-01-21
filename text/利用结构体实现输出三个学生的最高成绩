@@ -8,7 +8,7 @@ typedef struct Student
 }
 Student;
 
-void Student_print(const Student* Student);
+void Student_print(const Student* Student); 
 void Student_input(const Student* student,int n);
 void Find_highest_score(const Student* student,int n);
 
