@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 
 char myupper(char ch);
