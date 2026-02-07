@@ -1,0 +1,66 @@
+//消除空格的两种方法：
+//方法一：
+/*
+#include <stdio.h>
+#include <string.h>
+void fun(char *str);
+int main()
+{
+    char str[81];
+    printf("please input a string:");
+    gets(str);
+    puts(str);
+    fun(str);
+    printf("***str: %s\n",str);
+    getchar();
+    return 0;
+}
+void fun(char *str)
+{
+    int i, j;
+    for(i=0;*(str+i);i++)
+    {
+        if(*(str+i)==' ')
+        {
+            for(j=i+1;*(str+j);j++)
+            {
+                *(str+j-1)=*(str+j);
+            }
+            *(str+j-1)=0;
+            i=0;
+        }
+    }
+}
+*/
+//方法二：
+#include <stdio.h>
+#include <string.h>
+void fun(char *str);
+int main()
+{
+    char str[81];
+    printf("please input a string:");
+    gets(str);
+    puts(str);
+    fun(str);
+    printf("***str: %s\n",str);
+    getchar();
+    return 0;
+}
+void fun(char *str)
+{
+    int i,j,len,n,k,flag,m;
+    len=strlen(str);
+    for(i=0;i<len;i++)
+    {
+        if(str[i]==' ')
+        {
+            for(j=i;j<len;j++)
+            {
+                str[j]=str[j+1];
+            }
+            len--;
+            i=0;
+        }
+    }
+}
