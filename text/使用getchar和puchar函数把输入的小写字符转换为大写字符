@@ -1,6 +1,5 @@
 #include <stdio.h>
 char myupper(char ch);
-
 int main()
 {
     char ch;
