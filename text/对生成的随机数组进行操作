@@ -7,7 +7,6 @@
 #include <time.h>
 #define SIZE 15
 #define M 3
-
 void rand_a(int *a,int n);
 void sum_a(int *a,int *b,int n);
 void print(int *b,int n);
