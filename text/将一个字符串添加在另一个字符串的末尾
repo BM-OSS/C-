@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 void str_cat(char *dest,char *src);
 int main()
