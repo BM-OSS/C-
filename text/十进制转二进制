@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <string.h>
 void decimalToBinary(int num);
-
 int main() 
 {
     int decimal;
@@ -14,7 +13,6 @@ int main()
     return 0;
 }
 void decimalToBinary(int num) {
-   
     if (num == 0) 
     {
         printf("0");
