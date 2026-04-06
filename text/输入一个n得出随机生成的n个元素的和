@@ -17,3 +17,5 @@ int main()
     printf("此数组的所有元素之和为:sum=%d",sum);
     return 0;
 }
+
+
