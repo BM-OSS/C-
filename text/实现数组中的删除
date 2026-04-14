@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #define M 10
 void print(int *a,int n);
